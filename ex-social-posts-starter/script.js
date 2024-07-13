@@ -56,3 +56,6 @@ const posts = [
     }
 ];
 
+// RECUPERO IL CONTAINER DAL DOM
+const container = document.getElementById("container");
+
