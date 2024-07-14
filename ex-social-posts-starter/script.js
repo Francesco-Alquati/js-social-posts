@@ -108,6 +108,13 @@ likeButtons.forEach(button => {
       // prendo l'attributo degli id 
       const postId = parseInt(this.dataset.postid); 
   
+      // prendo il contatore dei like
+      const likeCounterElement = document.getElementById(`like-counter-${postId}`);
+  
+      // conto i like
+      const currentLikes = parseInt(likeCounterElement.textContent);
+  
+      
     });
   });
   
