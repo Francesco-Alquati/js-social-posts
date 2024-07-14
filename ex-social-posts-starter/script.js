@@ -55,6 +55,8 @@ const posts = [
         created: "2021-03-05"
     }
 ];
+// ARRAY CHE CONTIENE I POST CON IL LIKE 
+let likedPostIds = [];
 
 // RECUPERO IL CONTAINER DAL DOM
 const container = document.getElementById("container");
@@ -80,13 +82,13 @@ posts.forEach(post => {
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <a class="like-button  js-like-button" href="#" data-postid="1">
+                    <a class="like-button  js-like-button" href="#" data-postid="${post.id}">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
                     </a>
                 </div>
                 <div class="likes__counter">
-                    Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+                    Piace a <b id="like-counter-${post.id}" class="js-likes-counter">${post.likes}</b> persone
                 </div>
             </div>
         </div>
@@ -96,3 +98,7 @@ posts.forEach(post => {
     postElement.innerHTML = postHTML;
     container.append(postElement); 
 });
+
+// PRENDO TUTTI I LIKE BUTTON
+const likeButtons = document.querySelectorAll(".like-button.js-like-button");
+
