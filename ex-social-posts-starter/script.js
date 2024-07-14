@@ -113,6 +113,24 @@ likeButtons.forEach(button => {
   
       // conto i like
       const currentLikes = parseInt(likeCounterElement.textContent);
+      
+      // controllo se il pulsante dei like è cliccato
+      const isLiked = this.classList.contains("bg-primary")
+  
+      // Aggiorno i like e aggiungo stile al likebutton poi pusho i post con i like nel nuovo array
+      if (isLiked) {
+  
+          likeCounterElement.textContent = currentLikes - 1;
+          this.classList.remove("bg-primary");
+          likedPostIds = likedPostIds.filter(id => id !== postId);
+      }else {
+          
+          likeCounterElement.textContent = currentLikes + 1;
+          this.classList.add("bg-primary"); 
+          likedPostIds.push(postId);
+        }
+  
+      console.log("ID dei post con il like:", likedPostIds); 
   
       
     });
