@@ -62,7 +62,10 @@ let likedPostIds = [];
 const container = document.getElementById("container");
 
 posts.forEach(post => {
-    const authorImage = post.author.image || 'https://dummyimage.com/150x150/f500b4/ffffff&text=+LF'; // Placeholder image if author image is missing
+
+    // aggiungo un immgine di fallback se l'immagine dell'autore non è presente
+    const authorImage = post.author.image || 'https://dummyimage.com/150x150/f500b4/ffffff&text=+LF'; 
+    
     const postHTML = 
     `<div class="post">
         <div class="post__header">
