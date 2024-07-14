@@ -102,3 +102,13 @@ posts.forEach(post => {
 // PRENDO TUTTI I LIKE BUTTON
 const likeButtons = document.querySelectorAll(".like-button.js-like-button");
 
+likeButtons.forEach(button => {
+    button.addEventListener("click", function () {
+  
+      // prendo l'attributo degli id 
+      const postId = parseInt(this.dataset.postid); 
+  
+    });
+  });
+  
+  console.log(likedPostIds)
