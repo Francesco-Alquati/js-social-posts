@@ -55,16 +55,18 @@ const posts = [
         created: "05-03-2021"
     }
 ];
+
 // ARRAY CHE CONTIENE I POST CON IL LIKE 
 let likedPostIds = [];
 
 // RECUPERO IL CONTAINER DAL DOM
 const container = document.getElementById("container");
 
+
 posts.forEach(post => {
 
     // aggiungo un immgine di fallback se l'immagine dell'autore non è presente
-    const authorImage = post.author.image || 'https://dummyimage.com/150x150/f500b4/ffffff&text=+LF'; 
+    const authorImage = post.author.image || `https://dummyimage.com/150x150/f500b4/ffffff&text=+LF`; 
     
     const postHTML = 
     `<div class="post">
@@ -104,37 +106,41 @@ posts.forEach(post => {
 });
 
 // PRENDO TUTTI I LIKE BUTTON
-const likeButtons = document.querySelectorAll(".like-button.js-like-button");
+const likeButtons = document.querySelectorAll(".like-button");
 
 likeButtons.forEach(button => {
-    button.addEventListener("click", function () {
+    button.addEventListener("click", function (event) {
   
-      // prendo l'attributo degli id 
-      const postId = parseInt(this.dataset.postid); 
+    // evito che la pagina torni in alto al click del pulsante 
+    event.preventDefault();
+
+    // prendo l'attributo degli id 
+    const postId = parseInt(this.dataset.postid); 
   
-      // prendo il contatore dei like
-      const likeCounterElement = document.getElementById(`like-counter-${postId}`);
+    // prendo il contatore dei like associato all'id del post
+    const likeCounterElement = document.getElementById(`like-counter-${postId}`);
   
-      // conto i like
-      const currentLikes = parseInt(likeCounterElement.textContent);
+    // conto i like dei vari post 
+    const currentLikes = parseInt(likeCounterElement.textContent);
       
-      // controllo se il pulsante dei like è cliccato
-      const isLiked = this.classList.contains("bg-primary")
+    // controllo se il pulsante dei like è cliccato
+    const isLiked = this.classList.contains("blue")
   
-      // Aggiorno i like e aggiungo stile al likebutton poi pusho i post con i like nel nuovo array
-      if (isLiked) {
+    // Aggiorno i like e aggiungo stile al likebutton poi pusho i post con i like nel nuovo array
+    if (isLiked) {
   
-          likeCounterElement.textContent = currentLikes - 1;
-          this.classList.remove("bg-primary");
-          likedPostIds = likedPostIds.filter(id => id !== postId);
-      }else {
+        likeCounterElement.textContent = currentLikes - 1;
+        this.classList.remove("blue");
+        likedPostIds = likedPostIds.filter(id => id !== postId);
+    }
+    else {
           
-          likeCounterElement.textContent = currentLikes + 1;
-          this.classList.add("bg-primary"); 
-          likedPostIds.push(postId);
-        }
+        likeCounterElement.textContent = currentLikes + 1;
+        this.classList.add("blue"); 
+        likedPostIds.push(postId);
+    }
   
-      console.log("ID dei post con il like:", likedPostIds); 
+    console.log("ID dei post con il like:", likedPostIds); 
   
       
     });
